@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raanvix Technologies | We Grow Your Business</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- LIQUID GLOW EFFECTS -->
+  <div class="liquid-bg-shape1"></div>
+  <div class="liquid-bg-shape2"></div>
+
+  <!-- 3D Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar glass">
+    <div class="nav-logo">
+      <img src="public\logo.png" alt="Raanvix Technologies" class="logo-img-nav">
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+
+    <div class="nav-container" id="nav-container">
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Services</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contact" class="book-btn">
+          <span>Book a Free Call</span>
+          <div class="btn-glow"></div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="section hero-section">
+      <div class="hero-content">
+        <div class="logo-container" id="logo-container">
+          <img src="public\logo.png" alt="Raanvix Technologies Main Logo" class="logo-img-hero">
+        </div>
+        <div class="hero-captions">
+          <h2 class="caption-primary">Your business deserves a better web presence</h2>
+          <p class="caption-secondary">We don't just build <span class="arrow"><i data-lucide="arrow-right"></i></span>
+            <span class="highlight">We
+              grow your business</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SERVICES -->
+    <section id="products" class="section products-section">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-list">
+
+        <div class="service-detail-card glass">
+          <div class="service-icon-large"><i data-lucide="monitor"></i></div>
+          <div class="service-info">
+            <h3>Powerful Websites</h3>
+            <p class="service-desc">A website helps your business look professional and trustworthy online. It allows
+              customers to learn about your services, contact you easily, and helps you get more clients 24/7.</p>
+            <div class="service-example">
+              <strong>Example:</strong> A real estate website can showcase property listings, photos, pricing, and
+              contact details so buyers can easily explore properties and contact the agent directly.
+            </div>
+          </div>
+        </div>
+
+        <div class="service-detail-card glass">
+          <div class="service-icon-large"><i data-lucide="bot"></i></div>
+          <div class="service-info">
+            <h3>Automation Systems</h3>
+            <p class="service-desc">Automation systems save time by handling repetitive tasks automatically. They help
+              businesses respond faster, reduce manual work, and improve customer experience.</p>
+            <div class="service-example">
+              <strong>Example:</strong> When a customer fills out a form on your website, the system can automatically
+              send a WhatsApp message, email, and store the lead without any manual work.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="service-detail-card glass">
+          <div class="service-icon-large"><i data-lucide="layout-template"></i></div>
+          <div class="service-info">
+            <h3>Landing Pages</h3>
+            <p class="service-desc">Landing pages are focused pages designed to get quick results from ads or
+              promotions. They help turn visitors into customers by showing one clear offer and a strong action button.
+            </p>
+            <div class="service-example">
+              <strong>Example:</strong> If you run Instagram ads for a gym membership offer, the landing page can
+              collect customer details and book free trial sessions instantly.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: PORTFOLIO -->
+    <section id="portfolio" class="section portfolio-section">
+      <h2 class="section-title">Our Works & Feedbacks</h2>
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card type-3d glass">
+          <div class="card-inner">
+            <h3>3D Websites</h3>
+            <p class="style-badge">Modern Style</p>
+            <div class="feedback">Interactive 3D websites that instantly grab attention and keep visitors engaged.
+              Perfect for brands that want a modern, premium look that builds trust and increases sales.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card type-pro glass">
+          <div class="card-inner">
+            <h3>Professional Websites</h3>
+            <p class="style-badge">Corporate / Agency</p>
+            <div class="feedback">Clean and fast websites designed to showcase your business professionally.
+              Helps you attract clients, build trust, and grow your online presence.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card type-basic glass">
+          <div class="card-inner">
+            <h3>Basic Websites</h3>
+            <p class="style-badge">Essential Presence</p>
+            <div class="feedback">Simple and affordable websites to get your business online quickly.
+              Great for startups, local businesses, and small services.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card type-3d glass">
+          <div class="card-inner">
+            <h3>Landing pages</h3>
+            <p class="style-badge">Lead Generation</p>
+            <div class="feedback">Focused landing pages built for ads, promotions, and lead generation.
+              Designed to turn visitors into customers with clear messaging and strong CTAs.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card type-pro glass">
+          <div class="card-inner">
+            <h3>Our Automation systems</h3>
+            <p class="style-badge">Time Saving</p>
+            <div class="feedback">Smart systems that automate repetitive business tasks and save time.
+              Helps businesses work faster, reduce manual work, and improve efficiency.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card type-basic glass">
+          <div class="card-inner">
+            <h3>portfolio websites</h3>
+            <p class="style-badge">Personal Branding</p>
+            <div class="feedback">Modern portfolio websites to showcase your work and skills professionally.
+              Perfect for freelancers, creators, and agencies to impress clients online.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: CONTACT -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-container">
+        <h2 class="section-title">Let's Grow Together</h2>
+        <form id="contact-form" class="contact-form glass">
+          <div class="form-group">
+            <input type="text" id="fullname" required placeholder=" ">
+            <label for="fullname">Your Full Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="business-name" required placeholder=" ">
+            <label for="business-name">Business Name</label>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="email" id="email" required placeholder=" ">
+              <label for="email">Email Address</label>
+            </div>
+            <div class="form-group">
+              <input type="tel" id="number" required placeholder=" ">
+              <label for="number">Phone Number</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="business-type" required>
+              <option value="" disabled selected>Select Business Type</option>
+              <option value="Real-estate">Real-estate</option>
+              <option value="Online Course Platform">Online Course Platform</option>
+              <option value="Booking / Appointment Website">Booking / Appointment Website</option>
+              <option value="Pet Care / Veterinary">Pet Care / Veterinary</option>
+              <option value="Jewelry Store">Jewelry Store</option>
+              <option value="Photography">Photography</option>
+              <option value="Interior Design">Interior Design</option>
+              <option value="Restaurant / Cafe">Restaurant / Cafe</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group textarea-group">
+            <textarea id="challenge" rows="4" required placeholder=" "></textarea>
+            <label for="challenge">Biggest challenge faced</label>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Submit Request</span>
+            <div class="btn-glow"></div>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ABOUT -->
+    <section id="about" class="section about-section">
+      <div class="about-container glass">
+        <div class="about-header">
+          <img src="public\logo.png" alt="Raanvix Technologies" class="logo-img-about">
+          <h3 class="about-subtitle highlight">Your business deserves a stronger digital presence.</h3>
+        </div>
+
+        <div class="about-content">
+          <p>We are a team of passionate B.Tech students driven by technology, creativity, and innovation. What started
+            as curiosity for building tech solutions turned into a mission — helping businesses grow with powerful
+            digital products.</p>
+
+          <div class="about-features">
+            <div class="about-feature-box">
+              <h4>Why work with us?</h4>
+              <p>Because we don’t just create websites. We understand your idea, transform it into a professional
+                product, and take responsibility for helping it grow.</p>
+            </div>
+          </div>
+
+          <div class="process-grid">
+            <h4 class="process-title">Our 4D Process</h4>
+            <div class="process-steps">
+              <div class="process-step">
+                <span class="step-icon"><i data-lucide="lightbulb"></i></span>
+                <div class="step-text">
+                  <strong>Discuss</strong>
+                  <span>Understanding your vision deeply</span>
+                </div>
+              </div>
+              <div class="process-step">
+                <span class="step-icon"><i data-lucide="palette"></i></span>
+                <div class="step-text">
+                  <strong>Design</strong>
+                  <span>Creating modern, user-focused experiences</span>
+                </div>
+              </div>
+              <div class="process-step">
+                <span class="step-icon"><i data-lucide="wrench"></i></span>
+                <div class="step-text">
+                  <strong>Develop</strong>
+                  <span>Building scalable and powerful solutions</span>
+                </div>
+              </div>
+              <div class="process-step">
+                <span class="step-icon"><i data-lucide="rocket"></i></span>
+                <div class="step-text">
+                  <strong>Deploy</strong>
+                  <span>Launching and supporting your growth journey</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <blockquote class="about-quote">
+            “Your idea is yours. Turning it into a powerful product and growing it is our responsibility.”
+          </blockquote>
+
+          <p class="about-footer">We build with passion, strategy, and purpose — not just code.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
