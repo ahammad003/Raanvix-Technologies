@@ -235,22 +235,122 @@ gsap.fromTo('.service-detail-card',
   }
 );
 
-/* --- FORM HANDLING --- */
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const btn = e.target.querySelector('.submit-btn span');
-  const glow = e.target.querySelector('.btn-glow');
+/* --- REAL FORM HANDLING --- */
 
-  // Fake sending state
-  btn.innerHTML = 'Sending via Automation...';
-  gsap.to(glow, { width: '300%', height: '300%', duration: 0.5 });
+document
+  .getElementById('contact-form')
+  .addEventListener('submit', async (e) => {
 
-  setTimeout(() => {
-    btn.innerHTML = 'Request Submitted!';
-    e.target.reset();
+    e.preventDefault();
+
+    const form = e.target;
+
+    const btn =
+      form.querySelector('.submit-btn span');
+
+    const glow =
+      form.querySelector('.btn-glow');
+
+    // GET FORM VALUES
+
+    const fullName =
+      document.getElementById('fullname').value;
+
+    const email =
+      document.getElementById('email').value;
+
+    const phone =
+      document.getElementById('number').value;
+
+    const businessType =
+      document.getElementById('business-type').value;
+
+    const challenges =
+      document.getElementById('challenge').value;
+
+    // TURNSTILE TOKEN
+
+    const token =
+      document.querySelector(
+        '[name="cf-turnstile-response"]'
+      )?.value;
+
+    // LOADING STATE
+
+    btn.innerHTML =
+      'Sending via Automation...';
+
+    gsap.to(glow, {
+      width: '300%',
+      height: '300%',
+      duration: 0.5
+    });
+
+    try {
+
+      const response =
+        await fetch('/api/contact', {
+
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'application/json'
+          },
+
+          body: JSON.stringify({
+
+            fullName,
+            email,
+            phone,
+            businessType,
+            challenges,
+            token
+          })
+        });
+
+      const data =
+        await response.json();
+
+      // SUCCESS
+
+      if (data.success) {
+
+        btn.innerHTML =
+          'Request Submitted!';
+
+        form.reset();
+
+      } else {
+
+        btn.innerHTML =
+          data.error || 'Failed';
+
+      }
+
+    } catch (error) {
+
+      btn.innerHTML =
+        'Server Error';
+
+      console.error(error);
+
+    }
+
+    // RESET BUTTON
+
     setTimeout(() => {
-      btn.innerHTML = 'Submit Request';
-      gsap.to(glow, { width: 0, height: 0, duration: 0.5 });
+
+      btn.innerHTML =
+        'Submit Request';
+
+      gsap.to(glow, {
+
+        width: 0,
+        height: 0,
+        duration: 0.5
+      });
+
     }, 3000);
-  }, 1500);
-});
+
+  });
