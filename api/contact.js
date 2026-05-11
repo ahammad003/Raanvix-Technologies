@@ -161,58 +161,74 @@ export default async function handler(
 
     // SEND EMAIL USING RESEND
 
-    await resend.emails.send({
+    try {
 
-      from:
-        'onboarding@resend.dev',
+      const emailResponse =
+        await resend.emails.send({
 
-      to:
-        'raanvixtechnologies@gmail.com',
+          from:
+            'onboarding@resend.dev',
 
-      subject:
-        'New Client Lead',
+          to:
+            'YOUR_GMAIL@gmail.com',
 
-      html: `
+          subject:
+            'New Client Lead',
 
-        <div style="
-          font-family: Arial;
-          padding: 20px;
-          background: #0f172a;
-          color: white;
-        ">
+          html: `
 
-          <h2 style="color:#3b82f6;">
-            New Client Lead
-          </h2>
+            <div style="
+              font-family: Arial;
+              padding: 20px;
+              background: #0f172a;
+              color: white;
+            ">
 
-          <p>
-            <strong>Name:</strong>
-            ${body.fullName}
-          </p>
+              <h2 style="color:#3b82f6;">
+                New Client Lead
+              </h2>
 
-          <p>
-            <strong>Email:</strong>
-            ${body.email}
-          </p>
+              <p>
+                <strong>Name:</strong>
+                ${body.fullName}
+              </p>
 
-          <p>
-            <strong>Phone:</strong>
-            ${body.phone}
-          </p>
+              <p>
+                <strong>Email:</strong>
+                ${body.email}
+              </p>
 
-          <p>
-            <strong>Business Type:</strong>
-            ${body.businessType}
-          </p>
+              <p>
+                <strong>Phone:</strong>
+                ${body.phone}
+              </p>
 
-          <p>
-            <strong>Challenges:</strong>
-            ${body.challenges}
-          </p>
+              <p>
+                <strong>Business Type:</strong>
+                ${body.businessType}
+              </p>
 
-        </div>
-      `
-    })
+              <p>
+                <strong>Challenges:</strong>
+                ${body.challenges}
+              </p>
+
+            </div>
+          `
+        })
+
+      console.log(
+        'RESEND SUCCESS:',
+        emailResponse
+      )
+
+    } catch (emailError) {
+
+      console.error(
+        'RESEND ERROR:',
+        emailError
+      )
+    }
 
     // SUCCESS RESPONSE
 
