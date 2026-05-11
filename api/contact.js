@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-import { Resend } from 'resend'
 import { z } from 'zod'
 export const config = {
   api: {
@@ -12,9 +11,6 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 )
 
-const resend = new Resend(
-  process.env.RESEND_API_KEY
-)
 
 // VALIDATION
 
@@ -191,12 +187,13 @@ export default async function handler(
       success: true
     })
 
-  } catch (error) {
+  } 
+  catch (error) {
 
     console.error(error)
-
+  
     return res.status(500).json({
-      error: 'Server error'
+      error: error.message
     })
   }
 }
