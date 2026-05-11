@@ -145,12 +145,16 @@ export default async function handler(
 
   } catch (error) {
 
-    console.error(error)
-
+    console.error('SERVER ERROR:', error)
+  
     return res.status(500).json({
-
+  
       error:
-        error.message
+        error.message,
+  
+      stack:
+        error.stack
     })
   }
+  
 }
