@@ -72,11 +72,10 @@ export default async function handler(
 
           headers: {
             'Content-Type':
-              'application/json'
+              'application/x-www-form-urlencoded'
           },
 
-          body: JSON.stringify({
-
+          body: new URLSearchParams({
             secret:
               process.env
                 .TURNSTILE_SECRET_KEY,
@@ -89,6 +88,8 @@ export default async function handler(
 
     const captchaData =
       await captchaResponse.json()
+
+    console.log('Turnstile verification result:', captchaData)
 
     if (!captchaData.success) {
 

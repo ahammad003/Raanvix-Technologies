@@ -6,18 +6,18 @@ import { createIcons, Monitor, LayoutTemplate, Bot, Sun, Moon, Lightbulb, Palett
 // Initialize Icons
 createIcons({
   icons: {
-    Monitor,
-    LayoutTemplate,
-    Bot,
-    Sun,
-    Moon,
-    Lightbulb,
-    Palette,
-    Wrench,
-    Rocket,
-    ArrowRight,
-    Menu,
-    X
+    monitor: Monitor,
+    'layout-template': LayoutTemplate,
+    bot: Bot,
+    sun: Sun,
+    moon: Moon,
+    lightbulb: Lightbulb,
+    palette: Palette,
+    wrench: Wrench,
+    rocket: Rocket,
+    'arrow-right': ArrowRight,
+    menu: Menu,
+    x: X
   }
 });
 
@@ -140,7 +140,7 @@ window.addEventListener('resize', () => {
 const tl = gsap.timeline();
 
 // Start huge and scale down
-tl.fromTo('.logo-text',
+tl.fromTo('.logo-img-hero',
   { scale: 2, autoAlpha: 0 },
   { scale: 1, autoAlpha: 1, duration: 2, ease: "power4.out" }
 )
