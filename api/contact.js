@@ -1,10 +1,27 @@
 import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
 import { z } from 'zod'
+
+export const config = {
+  api: {
+    bodyParser: true
+  }
+}
+
+// SUPABASE
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
 )
+
+// RESEND
+
+const resend = new Resend(
+  process.env.RESEND_API_KEY
+)
+
+// VALIDATION SCHEMA
 
 const schema = z.object({
 
@@ -27,6 +44,8 @@ const schema = z.object({
     z.string()
 })
 
+// API HANDLER
+
 export default async function handler(
   req,
   res
@@ -34,7 +53,7 @@ export default async function handler(
 
   try {
 
-    // ONLY POST
+    // ALLOW ONLY POST
 
     if (req.method !== 'POST') {
 
@@ -50,7 +69,7 @@ export default async function handler(
         ? JSON.parse(req.body)
         : req.body
 
-    // VALIDATE
+    // VALIDATE FORM DATA
 
     const parsed =
       schema.safeParse(body)
@@ -62,7 +81,7 @@ export default async function handler(
       })
     }
 
-    // VERIFY TURNSTILE
+    // VERIFY CLOUDFLARE TURNSTILE
 
     const captchaResponse =
       await fetch(
@@ -76,6 +95,7 @@ export default async function handler(
           },
 
           body: new URLSearchParams({
+
             secret:
               process.env
                 .TURNSTILE_SECRET_KEY,
@@ -89,7 +109,10 @@ export default async function handler(
     const captchaData =
       await captchaResponse.json()
 
-    console.log('Turnstile verification result:', captchaData)
+    console.log(
+      'Turnstile verification:',
+      captchaData
+    )
 
     if (!captchaData.success) {
 
@@ -99,7 +122,7 @@ export default async function handler(
       })
     }
 
-    // SAVE TO DATABASE
+    // SAVE LEAD TO SUPABASE
 
     const { error } =
       await supabase
@@ -125,7 +148,10 @@ export default async function handler(
 
     if (error) {
 
-      console.error(error)
+      console.error(
+        'SUPABASE ERROR:',
+        error
+      )
 
       return res.status(500).json({
         error:
@@ -133,7 +159,62 @@ export default async function handler(
       })
     }
 
-    // SUCCESS
+    // SEND EMAIL USING RESEND
+
+    await resend.emails.send({
+
+      from:
+        'onboarding@resend.dev',
+
+      to:
+        'raanvixtechnologies@gmail.com',
+
+      subject:
+        'New Client Lead',
+
+      html: `
+
+        <div style="
+          font-family: Arial;
+          padding: 20px;
+          background: #0f172a;
+          color: white;
+        ">
+
+          <h2 style="color:#3b82f6;">
+            New Client Lead
+          </h2>
+
+          <p>
+            <strong>Name:</strong>
+            ${body.fullName}
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            ${body.email}
+          </p>
+
+          <p>
+            <strong>Phone:</strong>
+            ${body.phone}
+          </p>
+
+          <p>
+            <strong>Business Type:</strong>
+            ${body.businessType}
+          </p>
+
+          <p>
+            <strong>Challenges:</strong>
+            ${body.challenges}
+          </p>
+
+        </div>
+      `
+    })
+
+    // SUCCESS RESPONSE
 
     return res.status(200).json({
 
@@ -145,16 +226,18 @@ export default async function handler(
 
   } catch (error) {
 
-    console.error('SERVER ERROR:', error)
-  
+    console.error(
+      'SERVER ERROR:',
+      error
+    )
+
     return res.status(500).json({
-  
+
       error:
         error.message,
-  
+
       stack:
         error.stack
     })
   }
-  
 }
