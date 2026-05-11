@@ -1,6 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { z } from 'zod'
+export const config = {
+  api: {
+    bodyParser: true
+  }
+}
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -50,7 +55,10 @@ export default async function handler(
 
   try {
 
-    const body = req.body
+    const body =
+    typeof req.body === 'string'
+    ? JSON.parse(req.body)
+    : req.body
 
     // VALIDATE FORM
 
@@ -133,49 +141,49 @@ export default async function handler(
       })
     }
 
-    // SEND EMAIL
+    // // SEND EMAIL
 
-    await resend.emails.send({
+    // await resend.emails.send({
 
-      from:
-        'onboarding@resend.dev',
+    //   from:
+    //     'onboarding@resend.dev',
 
-      to:
-        'raanvixtechnologies@gmail.com',
+    //   to:
+    //     'raanvixtechnologies@gmail.com',
 
-      subject:
-        'New Client Lead',
+    //   subject:
+    //     'New Client Lead',
 
-      html: `
+    //   html: `
 
-        <h2>New Client Lead</h2>
+    //     <h2>New Client Lead</h2>
 
-        <p>
-          <strong>Name:</strong>
-          ${body.fullName}
-        </p>
+    //     <p>
+    //       <strong>Name:</strong>
+    //       ${body.fullName}
+    //     </p>
 
-        <p>
-          <strong>Email:</strong>
-          ${body.email}
-        </p>
+    //     <p>
+    //       <strong>Email:</strong>
+    //       ${body.email}
+    //     </p>
 
-        <p>
-          <strong>Phone:</strong>
-          ${body.phone}
-        </p>
+    //     <p>
+    //       <strong>Phone:</strong>
+    //       ${body.phone}
+    //     </p>
 
-        <p>
-          <strong>Business Type:</strong>
-          ${body.businessType}
-        </p>
+    //     <p>
+    //       <strong>Business Type:</strong>
+    //       ${body.businessType}
+    //     </p>
 
-        <p>
-          <strong>Challenges:</strong>
-          ${body.challenges}
-        </p>
-      `
-    })
+    //     <p>
+    //       <strong>Challenges:</strong>
+    //       ${body.challenges}
+    //     </p>
+    //   `
+    // })
 
     // SUCCESS
 
