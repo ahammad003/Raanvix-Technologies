@@ -1,6 +1,7 @@
 {
+    "version": 2,
     "functions": {
-      "api/*.js": {
+      "api/contact.js": {
         "runtime": "@vercel/node"
       }
     }
